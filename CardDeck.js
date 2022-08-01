@@ -64,10 +64,11 @@ class CardDeck extends EventTarget{
 
 	createHand(){
 		let hand = new Hand();
-		document.querySelector('body').append(hand.dom);
 		this.hands.push(hand);
 
 		this.dispatchEvent( new CustomEvent('hand-created', { detail: { hand: hand } }) );
+
+		return hand;
 	}
 
 	dealDeckToHands(){
@@ -99,13 +100,11 @@ class Hand extends EventTarget{
 		this.dom = document.createElement('div');
 		this.dom.classList.add('hand');
 		this.dom.setAttribute('data-uid', this.uid);
-
-		this.dispatchEvent( new CustomEvent('dom-builded', { detail: { hand: this } }) );
 	}
 
 	addCard(card){
 		this.cards.push(card);
-
+		this.dom.append(card.dom);
 		this.dispatchEvent( new CustomEvent('card-added', { detail: { hand: this } }) );
 	}
 }
@@ -113,7 +112,7 @@ class Hand extends EventTarget{
 class Card extends EventTarget{
 	constructor(family, value, color, icon){
 		super();
-		
+
 		this.family = family;
 		this.value = value;
 		this.color = color;
@@ -131,6 +130,7 @@ class Card extends EventTarget{
 		this.dom.classList.add(this.color, "card");
 		let cardData = document.createElement('div');
 		cardData.classList.add('values');
-		cardData.innerHTML = this.value + this.family;
+		cardData.innerHTML = this.value + this.icon;
+		this.dom.append(cardData);
 	}
 }
