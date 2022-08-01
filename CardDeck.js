@@ -25,6 +25,8 @@ class CardDeck{
 		};
 
 		this.deck = [];
+		this.hands = [];
+		this.carpet = [];
 
 		this.buildDeck();
 	}
@@ -53,6 +55,21 @@ class CardDeck{
 	    }
 		console.log(this.deck);
 	}
+
+	createHand(){
+		this.hands.push(new Hand());
+	}
+
+	dealWholeDeck(){
+		this.hands.push(new Hand());
+	}
+}
+
+class Hand{
+	constructor(uid = Math.round(new Date().getTime() + new Date().getTime() * Math.random())){
+		this.uid = uid;
+		this.cards = [];
+	}
 }
 
 class Card{
@@ -61,5 +78,6 @@ class Card{
 		this.value = value;
 		this.color = color;
 		this.icon = icon;
+		this.uid = this.value + this.family;
 	}
 }
