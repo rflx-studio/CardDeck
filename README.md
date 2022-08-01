@@ -1,4 +1,4 @@
-# MorseJS
-📡 A simple tool to convert text to Morse code and Morse code to text.
+# CardDeck
+♠♥♣♦ A tool to create card game.
 
-[Demo](https://codepen.io/tsbits/pen/xxWprEv)
+<!-- [Demo](https://codepen.io/tsbits/pen/xxWprEv) -->
