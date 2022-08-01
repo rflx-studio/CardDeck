@@ -1,74 +1,65 @@
-class MorseJS{
-	static charCode = {
-		'a' : '.-',
-		'b' : '-...',
-		'c' : '-.-.',
-		'd' : '-..',
-		'e' : '.',
-		'f' : '..-.',
-		'g' : '--.',
-		'h' : '....',
-		'i' : '..',
-		'j' : '.---',
-		'k' : '-.-',
-		'l' : '.-..',
-		'm' : '--',
-		'n' : '-.',
-		'o' : '---',
-		'p' : '.--.',
-		'q' : '--.-',
-		'r' : '.-.',
-		's' : '...',
-		't' : '-',
-		'u' : '..-',
-		'v' : '...-',
-		'w' : '.--',
-		'x' : '-..-',
-		'y' : '-.--',
-		'z' : '--..',
-		'1' : '.----',
-		'2' : '..---',
-		'3' : '...--',
-		'4' : '....-',
-		'5' : '.....',
-		'6' : '-....',
-		'7' : '--...',
-		'8' : '---..',
-		'9' : '----.',
-		'0' : '-----'
+class CardDeck{
+	constructor(){
+		this.cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+		this.families = {
+			spade: {
+				icon: '♠',
+				name: 'spade',
+				color: '#000'
+			},
+			heart: {
+				icon: '♥',
+				name: 'heart',
+				color: '#f00'
+			},
+			club: {
+				icon: '♣',
+				name: 'club',
+				color: '#000'
+			},
+			diamond: {
+				icon: '♦',
+				name: 'diamond',
+				color: '#f00'
+			}
+		};
+
+		this.deck = [];
+
+		this.buildDeck();
 	}
 
-	static crypt(message){
-		let cryptedMessage = '';
-		let cleanedMessage = message.replaceAll(' ', '');
+	buildDeck(){
+		if(this.deck.length != 0){
+			this.deck = [];
+		}
 
-		for(let char in cleanedMessage){
-			let n = MorseJS.charCode[cleanedMessage[char].toLowerCase()];
+		for(let f in this.families){
+			let fData = this.families[f];
 
-			if(n != null){
-				if(char > 0){
-					cryptedMessage += ' ';
-				}
-
-				cryptedMessage += n;
+			for(let c in this.cards){
+				let card = new Card(fData.name, this.cards[c], fData.color, fData.icon);
+				this.deck.push( card );
 			}
 		}
 
-		return cryptedMessage;
+		this.shuffleDeck();
 	}
 
-	static parse(cryptedMessage){
-		let parsedMessage = '';
-		let chars = cryptedMessage.split(' ');
-
-		for(let char in chars){
-			parsedMessage += MorseJS.getCharFromCode(chars[char]);
-		}
-
-		return parsedMessage;
+	shuffleDeck(){
+		for(let i = this.deck.length - 1; i > 0; i--) {
+	        const j = Math.floor(Math.random() * (i + 1));
+	        [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
+	    }
+		console.log(this.deck);
 	}
+}
 
-	static getCharFromCode(code){
-		return Object.keys(MorseJS.charCode).find(key => MorseJS.charCode[key] === code);
+class Card{
+	constructor(family, value, color, icon){
+		this.family = family;
+		this.value = value;
+		this.color = color;
+		this.icon = icon;
 	}
 }
