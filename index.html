@@ -30,6 +30,8 @@
 
 		.hand{
 			position: absolute;
+			width:  80%;
+			text-align:  center;
 		}
 
 		.hand.bottom{
@@ -38,15 +40,29 @@
 			transform:  translateX(-50%);
 		}
 
+		.hand.top{
+			top:  0;
+			left:  50%;
+			transform:  translateX(-50%) rotate(180deg);
+		}
+
 		.card{
-			width:  75px;
-			height:  100px;
+			width:  36px;
+			height:  50px;
 			border-radius:  7px;
 			background:  #fff;
 			position: relative;
 			box-shadow:  0 0 25px rgba(0, 0, 0, 0.5);
 			display:  inline-block;
-			margin:  1rem 0.5rem;
+			margin: 1rem -3px 1rem;
+			transform-origin:  bottom center;
+			cursor:  pointer;
+			transform:  scale(1);
+			transition:  transform 0.3s cubic-bezier(0.190, 1.000, 0.220, 1.000);
+		}
+
+		.card:hover{
+			transform:  scale(1.3);
 		}
 
 		.card.red{
@@ -62,7 +78,7 @@
 			top:  50%;
 			left:  50%;
 			transform:  translate(-50%, -50%);
-			font-size:  2rem;
+			font-size:  1rem;
 			font-weight: bold;
 		}
 	</style>
@@ -83,12 +99,18 @@
 	<script src="CardDeck.js"></script>
 	<script>
 		let cd;
+		let p1, p2;
 
 		document.addEventListener('DOMContentLoaded', (e) => {
 			cd = new CardDeck();
 
-			cd.createHand('player1');
-			cd.createHand('player2');
+			p1 = cd.createHand('player1');
+			p1.dom.classList.add('bottom');
+			document.body.append(p1.dom);
+
+			p2 = cd.createHand('player2');
+			p2.dom.classList.add('top');
+			document.body.append(p2.dom)
 
 			cd.dealDeckToHands();
 		});
