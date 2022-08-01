@@ -9,7 +9,7 @@
 		html, body{
 			margin:  0;
 			padding:  0;
-			background:  #111;
+			background:  #001636;
 			font-family:  sans-serif;
 			color:  #fff;
 			overflow:  hidden;
@@ -27,6 +27,44 @@
 			text-align:  center;
 			width:  750px;
 		}
+
+		.hand{
+			position: absolute;
+		}
+
+		.hand.bottom{
+			bottom:  0;
+			left:  50%;
+			transform:  translateX(-50%);
+		}
+
+		.card{
+			width:  75px;
+			height:  100px;
+			border-radius:  7px;
+			background:  #fff;
+			position: relative;
+			box-shadow:  0 0 25px rgba(0, 0, 0, 0.5);
+			display:  inline-block;
+			margin:  1rem 0.5rem;
+		}
+
+		.card.red{
+			color:  #f00;
+		}
+
+		.card.black{
+			color:  #000;
+		}
+
+		.card .values{
+			position: absolute;
+			top:  50%;
+			left:  50%;
+			transform:  translate(-50%, -50%);
+			font-size:  2rem;
+			font-weight: bold;
+		}
 	</style>
 </head>
 <body>
@@ -34,6 +72,14 @@
 		<h1>CardDeck</h1>
 		<p>A tool to create card game.</p>
 	</div>
+	<!-- <div class="hand bottom">
+		<div class="card black">
+			<div class="values">2♠</div>
+		</div>
+		<div class="card red">
+			<div class="values">2♥</div>
+		</div>
+	</div> -->
 	<script src="CardDeck.js"></script>
 	<script>
 		let cd;
