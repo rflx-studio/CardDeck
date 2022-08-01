@@ -106,6 +106,10 @@ class Hand extends EventTarget{
 		this.cards.push(card);
 		this.dom.append(card.dom);
 		this.dispatchEvent( new CustomEvent('card-added', { detail: { hand: this } }) );
+
+		card.dom.addEventListener("click", (e) => {
+			console.log(this)
+		});
 	}
 }
 

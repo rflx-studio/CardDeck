@@ -80,6 +80,7 @@
 			transform:  translate(-50%, -50%);
 			font-size:  1rem;
 			font-weight: bold;
+			user-select: none;
 		}
 	</style>
 </head>
@@ -110,7 +111,7 @@
 
 			p2 = cd.createHand('player2');
 			p2.dom.classList.add('top');
-			document.body.append(p2.dom)
+			document.body.append(p2.dom);
 
 			cd.dealDeckToHands();
 		});
