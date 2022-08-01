@@ -60,8 +60,13 @@ class CardDeck{
 		this.hands.push(new Hand());
 	}
 
-	dealWholeDeck(){
-		this.hands.push(new Hand());
+	dealDeckToHands(){
+		for(let i = this.deck.length - 1; i > -1; i--){
+			let card = this.deck.shift();
+			let hand = this.hands[i%this.hands.length];
+
+			hand.cards.push(card);
+		}
 	}
 }
 
