@@ -5,28 +5,28 @@ class CardDeck{
 			spade: {
 				icon: '♠',
 				name: 'spade',
-				color: '#000'
+				color: 'black'
 			},
 			heart: {
 				icon: '♥',
 				name: 'heart',
-				color: '#f00'
+				color: 'red'
 			},
 			club: {
 				icon: '♣',
 				name: 'club',
-				color: '#000'
+				color: 'black'
 			},
 			diamond: {
 				icon: '♦',
 				name: 'diamond',
-				color: '#f00'
+				color: 'red'
 			}
 		};
 
 		this.deck = [];
 		this.hands = [];
-		this.carpet = [];
+		this.table = [];
 
 		this.buildDeck();
 	}
@@ -57,7 +57,9 @@ class CardDeck{
 	}
 
 	createHand(){
-		this.hands.push(new Hand());
+		let hand = new Hand();
+		document.querySelector('body').append(hand.dom);
+		this.hands.push(hand);
 	}
 
 	dealDeckToHands(){
@@ -65,7 +67,7 @@ class CardDeck{
 			let card = this.deck.shift();
 			let hand = this.hands[i%this.hands.length];
 
-			hand.cards.push(card);
+			hand.addCard(card);
 		}
 	}
 }
@@ -74,6 +76,19 @@ class Hand{
 	constructor(uid = Math.round(new Date().getTime() + new Date().getTime() * Math.random())){
 		this.uid = uid;
 		this.cards = [];
+		this.dom;
+
+		this.buildDom();
+	}
+
+	buildDom(){
+		this.dom = document.createElement('div');
+		this.dom.classList.add('hand');
+		this.dom.setAttribute('data-uid', this.uid);
+	}
+
+	addCard(card){
+		this.cards.push(card);
 	}
 }
 
@@ -84,5 +99,18 @@ class Card{
 		this.color = color;
 		this.icon = icon;
 		this.uid = this.value + this.family;
+
+		this.dom;
+
+		this.buildDom();
+	}
+
+	buildDom(){
+		this.dom = document.createElement('div');
+		this.dom.setAttribute('data-uid', this.uid);
+		this.dom.classList.add(this.color, "card");
+		let cardData = document.createElement('div');
+		cardData.classList.add('values');
+		cardData.innerHTML = this.value + this.family;
 	}
 }
