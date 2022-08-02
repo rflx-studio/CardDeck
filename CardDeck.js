@@ -26,10 +26,10 @@ class CardDeck{
 
 		this.deck = [];
 
-		this.generateDeck();
+		this.generate();
 	}
 
-	generateDeck(){
+	generate(){
 		if(this.deck.length != 0){
 			this.deck = [];
 		}
@@ -44,7 +44,7 @@ class CardDeck{
 		}
 	}
 
-	shuffleDeck(){
+	shuffle(){
 		for(let i = this.deck.length - 1; i > 0; i--) {
 	        const j = Math.floor(Math.random() * (i + 1));
 	        [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
