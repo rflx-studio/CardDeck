@@ -104,16 +104,6 @@
 
 		document.addEventListener('DOMContentLoaded', (e) => {
 			cd = new CardDeck();
-
-			p1 = cd.createHand('player1');
-			p1.dom.classList.add('bottom');
-			document.body.append(p1.dom);
-
-			p2 = cd.createHand('player2');
-			p2.dom.classList.add('top');
-			document.body.append(p2.dom);
-
-			cd.dealDeckToHands();
 		});
 	</script>
 </body>
